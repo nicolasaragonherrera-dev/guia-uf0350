@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Estudio — UF0350 Gestión Administrativa del Proceso Comercial</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #f7f4ef;
+    --surface: #ffffff;
+    --card: #fdfcf9;
+    --border: #e0d8cc;
+    --accent: #b5832a;
+    --accent2: #c8593a;
+    --text: #2a2620;
+    --muted: #8a7e6e;
+    --u1: #3d7abf;
+    --u2: #4a9e54;
+    --u3: #c8832a;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 200px;
+    background: radial-gradient(ellipse, rgba(181,131,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .exam-badge {
+    display: inline-block;
+    background: var(--accent2);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--accent);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle { color: var(--muted); font-size: 0.95rem; }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+    padding: 0 1rem;
+    box-shadow: var(--shadow);
+  }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 1rem 1.4rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .panel { display: none; padding: 2rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  .unit-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .unit-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    font-weight: 900;
+    opacity: 0.1;
+    color: var(--text);
+  }
+  .unit-title-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .unit-title-block p { color: var(--muted); font-size: 0.85rem; }
+
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .section-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 1rem 1.2rem;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+  }
+  .section-toggle:hover { background: rgba(181,131,42,0.05); }
+  .section-toggle .chevron { transition: transform 0.25s; font-size: 0.7rem; color: var(--muted); }
+  .section-toggle.open .chevron { transform: rotate(180deg); }
+  .section-body { display: none; padding: 0 1.2rem 1.2rem; }
+  .section-body.open { display: block; }
+
+  p { margin-bottom: 0.8rem; color: var(--text); }
+  p:last-child { margin-bottom: 0; }
+
+  .explain-box {
+    background: #fff8ed;
+    border-left: 4px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 6px 6px 0;
+    margin: 0.8rem 0;
+  }
+  .explain-box .label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .manual-box {
+    background: #f0f4ff;
+    border-left: 4px solid #5a7ec8;
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 6px 6px 0;
+    margin: 0.8rem 0;
+  }
+  .manual-box .label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5a7ec8;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  .manual-box p { color: #3a4a6a; font-style: italic; }
+
+  .def-box {
+    background: #fff8ed;
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem;
+    border-radius: 0 4px 4px 0;
+    margin: 0.8rem 0;
+  }
+  .def-box strong { color: var(--accent); display: block; margin-bottom: 0.3rem; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .list-items { list-style: none; padding: 0; }
+  .list-items li {
+    padding: 0.4rem 0 0.4rem 1.2rem;
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: var(--text);
+  }
+  .list-items li:last-child { border-bottom: none; }
+  .list-items li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin: 0.8rem 0; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card-mini {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.8rem;
+  }
+  .card-mini strong { display: block; margin-bottom: 0.3rem; color: var(--accent); font-size: 0.85rem; }
+  .card-mini p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+  .badge-tip { background: #e8f5e9; color: #2e7d32; }
+  .badge-warn { background: #fff3e0; color: #e65100; }
+  .badge-law { background: #e8eaf6; color: #3949ab; }
+
+  h4 {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 1rem 0 0.4rem;
+  }
+
+  /* QUIZ */
+  .quiz-container { margin-top: 0.5rem; }
+  .quiz-q { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; box-shadow: var(--shadow); }
+  .quiz-q-text { padding: 1rem 1.2rem; font-weight: 600; font-size: 0.9rem; color: var(--text); }
+  .quiz-options { padding: 0 1rem 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .quiz-opt {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    transition: all 0.15s;
+  }
+  .quiz-opt:hover:not(:disabled) { background: #fff8ed; border-color: var(--accent); }
+  .quiz-opt.correct { background: #e8f5e9; border-color: #4a9e54; color: #2e7d32; }
+  .quiz-opt.wrong { background: #fce4ec; border-color: #9e3d6b; color: #9e3d6b; }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-feedback { padding: 0.5rem 1.2rem 1rem; font-size: 0.82rem; color: var(--muted); display: none; }
+  .quiz-feedback.show { display: block; }
+
+  .quiz-score {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: var(--shadow);
+  }
+  .quiz-score.show { display: block; }
+  .score-big { font-size: 3rem; font-weight: 700; color: var(--accent); font-family: 'Playfair Display', serif; }
+
+  .quiz-reset {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.7rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .quiz-reset:hover { background: #9a6e22; }
+
+  /* FLASHCARD */
+  .flashcard-wrap { perspective: 1000px; height: 220px; cursor: pointer; margin-bottom: 1rem; }
+  .flashcard {
+    width: 100%; height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .fc-front, .fc-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .fc-front { background: var(--surface); border: 2px solid var(--accent); }
+  .fc-front p { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+  .fc-back { background: var(--accent); transform: rotateY(180deg); }
+  .fc-back p { color: #fff; font-size: 0.95rem; line-height: 1.5; }
+  .fc-hint { font-size: 0.75rem; color: var(--muted); text-align: center; margin-bottom: 0.5rem; }
+
+  .fc-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem; }
+  .fc-nav button {
+    padding: 0.5rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    box-shadow: var(--shadow);
+  }
+  .fc-nav button:hover { border-color: var(--accent); color: var(--accent); }
+  .fc-counter { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+
+  /* MATCH GAME */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1rem; }
+  .match-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--text);
+    transition: all 0.15s;
+    box-shadow: var(--shadow);
+  }
+  .match-card:hover { border-color: var(--accent); }
+  .match-card.selected { border-color: var(--accent); background: #fff8ed; color: var(--accent); font-weight: 600; }
+  .match-card.matched { background: #e8f5e9; border-color: #4a9e54; color: #2e7d32; cursor: default; font-weight: 600; }
+  .match-card.wrong-flash { border-color: var(--accent2); background: #fce4ec; }
+  .match-result { text-align: center; padding: 1rem; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="exam-badge">UF0350 · ADGG0208</div>
+  <h1>Gestión Administrativa<br>del Proceso Comercial</h1>
+  <p class="subtitle">Guía completa de estudio · 3 Unidades de Aprendizaje</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('u1')"><span class="dot" style="background:var(--u1)"></span>UA1 · Compraventa</button>
+  <button class="tab-btn" onclick="showTab('u2')"><span class="dot" style="background:var(--u2)"></span>UA2 · Normativa</button>
+  <button class="tab-btn" onclick="showTab('u3')"><span class="dot" style="background:var(--u3)"></span>UA3 · Almacén</button>
+  <button class="tab-btn" onclick="showTab('flash')">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz')">✏️ Quiz</button>
+  <button class="tab-btn" onclick="showTab('match')">🔗 Unir</button>
+</div>
+
+<!-- ===================== UA1 ===================== -->
+<div class="panel active" id="panel-u1">
+  <div class="unit-header">
+    <div class="unit-num">01</div>
+    <div class="unit-title-block">
+      <h2>Tramitación administrativa del procedimiento compra-venta convencional</h2>
+      <p>Proveedores · Postventa · Documentos · Cálculos comerciales · Protección de datos</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle open" onclick="toggleSection(this)">1. Selección de proveedores y proceso de aprovisionamiento <span class="chevron">▼</span></button>
+    <div class="section-body open">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Antes de comprar nada, hay que elegir bien a quién comprárselo, y eso es más complejo de lo que parece. La mayoría piensa que la clave es el precio, y sí, importa mucho, pero hay cinco factores más que pueden hacerte perder dinero si los ignoras: la calidad del producto, la forma y el plazo de pago, el plazo de entrega, y el servicio postventa del proveedor (qué pasa si llega algo en mal estado).</p>
+        <p>El proceso entero se llama aprovisionamiento y tiene cuatro fases. Primero analizas qué necesitas, cuánto y para cuándo. Segundo buscas proveedores: guías telefónicas, ferias del sector, internet, contacto con otras empresas. Tercero los comparas y eliges. Y cuarto recibes la mercancía con su albarán y la almacenas.</p>
+        <p>La parte clave del examen es la fase de selección. El manual propone asignar un porcentaje de importancia a cada criterio (por ejemplo: precio 40%, calidad 30%, forma de pago 20%, plazo de entrega 10%) y puntuar a cada proveedor del 1 al 3 en cada criterio. Luego multiplicas puntuación × ponderación y sumas. Gana quien más puntos saque. Ejemplo real del manual: tres proveedores de azúcar moreno → el proveedor B gana con 2,30 puntos, por encima del A (2,20) y el C (2,00), porque aunque no era el más barato, combinaba mejor calidad, pago aplazado y plazo razonable.</p>
+        <p>También hay que saber que según el tipo de empresa cambia la prioridad: las industriales priorizan precio y calidad, las comerciales solo precio, y las de servicios buscan optimizar calidad + tiempo + forma, además del precio.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Tipos de empresa según actividad:</strong> Sector primario (naturaleza: minería, pesca), Sector secundario (transformación: industria), Sector terciario (servicios: hotel, academia), Sector cuaternario (servicios intelectuales: I+D).</p>
+        <p><strong>Fases del aprovisionamiento:</strong></p>
+        <p>1. <strong>Análisis de necesidades:</strong> qué, cuánto y en qué plazo.</p>
+        <p>2. <strong>Búsqueda de proveedores:</strong> guías telefónicas, prensa, ferias, internet, contacto con otras empresas.</p>
+        <p>3. <strong>Valoración y selección:</strong> precio, calidad, forma y plazo de pago, plazo de entrega, servicio postventa y otros factores (localización, tamaño, situación económica del proveedor). Se asigna una ponderación % a cada criterio y se puntúa del 1 al 3.</p>
+        <p>4. <strong>Obtención y almacenamiento:</strong> recepción de la mercancía con el albarán, almacenaje ordenado.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">2. Gestión administrativa del seguimiento de clientes (postventa) <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Vender no acaba cuando el cliente se va con el producto. La postventa es lo que decide si vuelve o no, y si habla bien o mal de ti. El objetivo es la fidelización: que el cliente se quede contigo aunque haya competencia.</p>
+        <p>Las cinco fases del servicio postventa son: (1) agradecimiento de compra por teléfono, correo o email; (2) comprobar que está satisfecho y resolver incidencias al momento; (3) asesoramiento sobre el uso del producto; (4) gestión de incidencias si hay quejas; (5) información sobre productos accesorios o complementarios.</p>
+        <p>Las acciones concretas incluyen: envío de muestras gratuitas, encuestas de satisfacción, descuentos a clientes frecuentes, garantías adicionales, servicio técnico y resolución rápida de quejas. El dato clave del manual: es 5 veces más caro captar un cliente nuevo que retener uno existente.</p>
+        <p>Para gestionar todo esto las empresas usan el CRM (Customer Relationship Management): una herramienta tecnológica que centraliza toda la información del cliente para conocerlo en profundidad y ofrecerle exactamente lo que necesita. Y el marketing relacional va un paso más allá: trata a cada cliente como único, personalizando la comunicación para mantener una relación a largo plazo.</p>
+        <p>¿Cómo actúas según el nivel de satisfacción? Con el cliente insatisfecho: recoges quejas, haces benchmarking y lanzas publicidad de mejoras. Con el indiferente: mejoras el producto y potencias el SAC. Con el satisfecho: programas de fidelización e incentivos. Con el muy satisfecho: le mantienes con tratos exclusivos y comunicación continua.</p>
+        <p>El personal postventa varía según el producto: electrónica barata → gestión de devoluciones; electrodomésticos → servicio de reparaciones; maquinaria especializada → mantenimiento preventivo; servicios → resolución de incidencias; software a medida → actualizaciones y soporte técnico.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Fases del servicio postventa:</strong> 1. Agradecimiento de compra, 2. Comprobar satisfacción, 3. Asesoramiento sobre usos del producto, 4. Gestión de incidencias, 5. Información sobre productos accesorios.</p>
+        <p><strong>Acciones postventa:</strong> Informar al cliente (muestras gratuitas, correspondencia comercial), elaborar estadísticas (encuestas de satisfacción), realizar promociones (descuentos a clientes frecuentes), ofrecer garantías, servicio técnico, resolución de quejas y reclamaciones.</p>
+        <p><strong>Personal postventa:</strong> Varía según el producto — artículos electrónicos de bajo precio (devoluciones/sustitución), precio medio (reparaciones), maquinaria especializada (mantenimiento), servicios (gestión de incidencias), soportes informáticos (reparaciones rápidas).</p>
+        <p><strong>CRM (Customer Relationship Management):</strong> Sistema tecnológico para fortalecer la relación empresa-cliente. Objetivo: conocer las necesidades de cada cliente y fidelizarlo.</p>
+        <p><strong>Marketing relacional:</strong> Crear, fortalecer y mantener relaciones con clientes rentables. Se basa en la personalización — cada cliente es único.</p>
+        <p><strong>Actuaciones según nivel de satisfacción:</strong> Cliente insatisfecho (recoger quejas, benchmarking, publicidad), indiferente (mejorar atributos, potenciar SAC), satisfecho (programas de fidelización, incentivos), muy satisfecho (mantener, reforzar, exclusividad).</p>
+        <p><strong>Indicadores de calidad postventa:</strong> Número de reclamaciones, tiempo de resolución, índice de satisfacción, tasa de repetición de compra.</p>
+        <p><span class="badge badge-tip">DATO</span> Es 5 veces más costoso conseguir un nuevo cliente que retener uno existente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">3. Identificación de documentos básicos de compraventa <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Cada paso del proceso de compraventa genera un documento. La cadena es siempre la misma: presupuesto → pedido → albarán → factura. Y luego están los documentos de transporte y los de pago.</p>
+        <p>El <strong>presupuesto</strong> lo emite el proveedor antes de que compres, para que sepas cuánto te va a costar. El <strong>pedido</strong> lo hace el comprador cuando acepta. El <strong>albarán</strong> acompaña la mercancía en el transporte: el comprador lo firma y devuelve una copia al vendedor para confirmar que ha recibido todo bien. Y la <strong>factura</strong> es el único documento obligatorio por ley (el albarán y la nota de entrega NO lo son).</p>
+        <p>Sobre el albarán hay una distinción importante: el <em>valorado</em> incluye precios, descuentos e impuestos; el <em>sin valorar</em> solo describe cantidades y artículos sin importes. Se emite en 1 original + 2 copias: una se queda el vendedor, el original y otra copia van con la mercancía, y el comprador firma la copia y se la devuelve al vendedor.</p>
+        <p>La <strong>factura simplificada</strong> es para el consumidor final: se puede emitir cuando el importe no supere los 400 € con IVA incluido (o si es una factura rectificativa). Ciertos colectivos pueden usarla hasta 3.000 €. Su contenido es más reducido: no siempre lleva los datos del destinatario.</p>
+        <p>La <strong>carta-porte</strong> la emite el transportista cuando el proveedor usa transporte externo. Lleva datos del remitente, del destinatario y descripción de los bultos. Portes pagados = paga el vendedor; portes debidos = paga el comprador.</p>
+        <p>Documentos de pago: el <strong>recibo</strong> acredita pagos en metálico o en cuenta. La <strong>transferencia</strong> ingresa el importe directamente en la cuenta del proveedor (puede haber comisiones bancarias). El <strong>cheque</strong> se cobra a la vista al presentarlo en el banco: al portador lo cobra cualquiera, nominativo solo el indicado; cruzado solo se puede ingresar en cuenta, no cobrar en caja. El <strong>pagaré</strong> es una promesa de pago para una fecha futura (a diferencia del cheque, no es inmediato; siempre es nominativo, nunca al portador). La <strong>letra de cambio</strong> es el más formal: el librador ordena al librado que pague al tenedor, y tiene la ventaja de que se puede ejecutar judicialmente.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Presupuesto:</strong> Documento del proveedor con el coste previo a la compra. Incluye datos de ambas partes, descripción de artículos/servicios, precio, descuentos, gastos adicionales, firma y sello.</p>
+        <p><strong>Pedido:</strong> La empresa compradora lo formaliza tras aceptar el presupuesto. Datos: empresa compradora y vendedora, número de orden, fecha, condiciones (plazo, lugar de entrega, pago), descripción detallada de la mercancía, precio unitario, firma y sello. Se emite original + copia mínimo.</p>
+        <p><strong>Albarán:</strong> Justifica que la mercancía fue enviada. Datos: número de orden y fecha, datos del vendedor, descripción del envío, precio unitario, condiciones, datos del comprador. Se emite 1 original + 2 copias. El comprador firma la copia dando fe de la recepción.</p>
+        <p><strong>Albarán valorado vs. sin valorar:</strong> Valorado incluye importe total con descuentos e impuestos. Sin valorar solo describe cantidad y artículos sin precio.</p>
+        <p><strong>Nota de entrega:</strong> Igual que el albarán pero menos detallada, usada cuando el proveedor no tiene modelo de albarán.</p>
+        <p><span class="badge badge-warn">OJO</span> Albarán y nota de entrega NO son obligatorios; la factura SÍ lo es.</p>
+        <p><strong>Factura:</strong> Documento mercantil obligatorio. Elementos: número y serie, fecha expedición, NIF y datos completos del obligado a expedir, descripción de operaciones y base imponible, tipo impositivo del IVA, cuota tributaria separada, NIF y datos del destinatario.</p>
+        <p><strong>Factura simplificada:</strong> Para operaciones con consumidor final. Importe ≤ 400 € IVA incluido (o factura rectificativa). Ciertos colectivos hasta 3.000 € IVA incluido. Contenido simplificado: sin datos del destinatario en muchos casos.</p>
+        <p><strong>Carta-porte:</strong> Documento del transportista cuando la empresa usa transporte ajeno. Incluye datos del remitente, destinatario y descripción de bultos/volumen.</p>
+        <p><span class="badge badge-tip">VOCAB</span> Portes pagados = la empresa vendedora paga el transporte. Portes debidos = lo paga el comprador.</p>
+        <p><strong>Documentos de pago principales:</strong></p>
+        <p>· <strong>Recibo:</strong> Acredita pagos en metálico o en cuenta bancaria.</p>
+        <p>· <strong>Transferencia:</strong> Pago ingresando el importe en cuenta bancaria del proveedor. Los bancos pueden cobrar comisiones.</p>
+        <p>· <strong>Cheque:</strong> Se paga a la vista (al presentarlo). Puede ser "al portador" (cobra cualquiera) o "nominativo" (solo el indicado). Para hacer el cobro efectivo: a la línea = es normal; cruzado = solo se puede ingresar en cuenta (no cobrar en caja).</p>
+        <p>· <strong>Pagaré:</strong> Promesa de pago a una fecha futura determinada. A diferencia del cheque, el pago no es inmediato.</p>
+        <p>· <strong>Letra de cambio:</strong> Documento por el que el librador ordena al librado el pago de una cantidad al tenedor. Es el más formal — permite ejecutarse judicialmente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">4. Cálculo comercial en operaciones de compraventa <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Las facturas no son solo "precio × cantidad". Hay una cadena de operaciones que hay que aplicar en orden: primero el importe bruto, luego los descuentos, luego los gastos añadidos (portes, embalajes, corretajes), y sobre todo eso se calcula la base imponible. Al final se aplica el IVA correspondiente.</p>
+        <p>Los <strong>descuentos</strong> se aplican en cascada, no se suman. Primero el descuento comercial, luego el rappel (por volumen), luego los gastos de compra, y luego el descuento por pronto pago. La fórmula de la base imponible es: Importe bruto − dto. comercial − dto. rappel + gastos de compras − dto. pronto pago.</p>
+        <p>Los <strong>portes</strong> (gastos de transporte) se pueden incluir como suplido: aparecen en la factura en línea separada y sin IVA cuando el vendedor los gestiona por cuenta del cliente. Lo mismo aplica a envases, embalajes y corretajes (todos al 21% de IVA, salvo los seguros que están exentos).</p>
+        <p>Si en la misma factura hay productos con distintos tipos de IVA y además hay descuentos o recargos, se usa la <strong>K de proporcionalidad</strong>: K = Precio de coste / Importe bruto. Luego multiplicas K por el precio unitario de cada artículo para repartir los descuentos y gastos proporcionalmente entre las bases imponibles de cada tipo de IVA.</p>
+        <p>Para el <strong>precio de venta</strong> hay dos métodos. El método coste más margen: precio de venta = coste + (coste × % margen). El método de porcentaje de utilidad: precio = coste / (1 − % margen). Ojo con la diferencia: con el primer método, si luego aplicas un descuento del 30%, puedes perder dinero. Con el segundo, no.</p>
+        <p>El <strong>interés comercial</strong> se usa cuando el pago es aplazado: I = (C × n × r) / 360, donde C es el capital, n los días y r el tipo de interés. El año comercial cuenta 30 días por mes y 360 por año. Las <strong>comisiones</strong> son un porcentaje aplicado sobre el importe de la operación, ya sean de agentes intermediarios, bancarias o de financiación.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Precio de adquisición:</strong> Importe facturado − descuentos + gastos adicionales (transporte, aranceles, seguros, etc.). No incluye IVA recuperable.</p>
+        <p><strong>Descuentos comerciales:</strong> Descuento por volumen, por pronto pago, descuento comercial (rappel). Se aplican en cascada sobre el precio anterior, no se suman.</p>
+        <p><strong>Recargos:</strong> Gastos de transporte, embalaje, seguros — se añaden al precio base.</p>
+        <p><strong>Base imponible del IVA:</strong> Precio neto (con descuentos aplicados) + recargos. El IVA se calcula sobre esta base.</p>
+        <p><strong>Precio final de factura:</strong> Base imponible + Cuota de IVA − Retención IRPF (si aplica).</p>
+        <p><strong>Gastos de corretaje:</strong> Comisión cobrada por un intermediario (corredor o agente) por mediar en una operación comercial o financiera.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">5. Tramitación de incidencias y normativa de protección de datos <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>En el día a día de cualquier empresa surgen problemas en la documentación: una factura con datos incorrectos, un albarán que no cuadra con el pedido, mercancía defectuosa, un pago que no llega... Todo eso son incidencias, y hay que tener un protocolo claro para gestionarlas.</p>
+        <p>Hay dos tipos: las <strong>incidencias administrativas</strong> (errores en los documentos: datos equivocados, albaranes sin cuadrar, facturas mal emitidas) y las <strong>incidencias propias de la compraventa</strong> (mercancía en mal estado, retrasos en la entrega, pedidos incompletos). Cuando hay un error en una factura ya emitida, se emite una <strong>factura rectificativa</strong>, regulada por el RD 1619/2012. Debe expedirse en cuanto se detecta el error.</p>
+        <p>El ciclo de vida de cualquier incidencia tiene siete pasos: identificación → registro → clasificación → priorización → envío al departamento correspondiente → investigación y diagnóstico → resolución y cierre. La comunicación interna es clave: puede ser descendente (de jefe a empleados) o ascendente (de empleados a jefe), y tiene que ser bidireccional para que funcione.</p>
+        <p>En cuanto a los datos personales de clientes y proveedores, la normativa es muy exigente. El <strong>RGPD</strong> (Reglamento UE 2016/679) y la <strong>LOPDGDD</strong> (LO 3/2018) obligan a tratarlos con licitud, lealtad, transparencia, y solo para la finalidad para la que se recogieron. Los datos básicos (nombre, DNI, dirección, datos bancarios) son los habituales en operaciones comerciales. Los <strong>datos especiales</strong> (salud, origen étnico, opiniones políticas, datos biométricos) tienen protección reforzada y requieren consentimiento explícito.</p>
+        <p>La información a los interesados debe darse por capas: en la primera capa, un resumen claro y visible; en la segunda, información detallada. Como los avisos de cookies de una web: primero lo básico, luego el detalle. Los datos se conservan mientras dure la relación comercial, y hay que garantizar su seguridad e integridad incluso después de que esa relación termine.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Tipos de incidencias:</strong> Errores administrativos en documentación (datos incorrectos, albaranes sin cuadrar), incidencias de la naturaleza de la compraventa (mercancía defectuosa, retrasos).</p>
+        <p><strong>Factura rectificativa:</strong> Se emite cuando hay errores en la factura original. Debe expedirse en el momento en que se tiene constancia del error o de las circunstancias que obligan a su rectificación.</p>
+        <p><span class="badge badge-law">LEY</span> <strong>LOPDGDD (LO 3/2018):</strong> Ley Orgánica de Protección de Datos Personales y garantía de derechos digitales, que adapta en España el RGPD europeo.</p>
+        <p><span class="badge badge-law">LEY</span> <strong>RGPD — Reglamento (UE) 2016/679:</strong> Regula el tratamiento de datos personales en la UE. Principios: licitud, lealtad, transparencia, limitación de la finalidad, minimización de datos, exactitud, limitación del plazo de conservación, integridad y confidencialidad.</p>
+        <p><strong>Obligaciones con datos personales:</strong> Solo usar los datos para la finalidad para la que se recogieron; guardar confidencialidad incluso tras acabar la relación comercial; garantizar seguridad e integridad.</p>
+        <p><span class="badge badge-law">LEY</span> <strong>Real Decreto 1619/2012:</strong> Regula las obligaciones de facturación en España.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== UA2 ===================== -->
+<div class="panel" id="panel-u2">
+  <div class="unit-header">
+    <div class="unit-num">02</div>
+    <div class="unit-title-block">
+      <h2>Aplicación de la normativa mercantil y fiscal vigente en las operaciones de compraventa</h2>
+      <p>Derecho mercantil · IVA · Legislación fiscal · Normativa UE</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle open" onclick="toggleSection(this)">1. Legislación mercantil básica <span class="chevron">▼</span></button>
+    <div class="section-body open">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El derecho mercantil es la rama del derecho privado que regula toda la actividad empresarial: cómo se crea y registra una empresa, cómo lleva la contabilidad, qué contratos puede firmar, los títulos-valor que maneja (cheques, pagarés, letras), y qué pasa si quiebra. La norma base es el <strong>Código de Comercio</strong>, aprobado en 1885 y en vigor desde el 1 de enero de 1886.</p>
+        <p>El contrato más importante del temario es el <strong>contrato de compraventa mercantil</strong>: el vendedor transmite la propiedad de algo al comprador a cambio de dinero, con ánimo de lucrarse en la reventa. Esa última parte es crucial: si compras para uso propio, es compraventa civil, no mercantil. Solo es mercantil cuando hay ánimo de lucro en la reventa de bienes muebles.</p>
+        <p>Un contrato de compraventa tiene tres tipos de elementos: <em>personales</em> (comprador y vendedor), <em>reales</em> (la cosa y el precio), y <em>formales</em> (el acuerdo de voluntades, que puede ser verbal o escrito). La ley no exige una forma concreta, pero los contratos suelen incluir: lugar y fecha, datos de las partes, descripción del bien, precio y forma de pago, cláusulas acordadas y firmas.</p>
+        <p>El contrato debe ser <strong>bilateral</strong> (ambas partes se obligan), <strong>oneroso</strong> (hay contraprestación económica) y <strong>consensual</strong> (basta con el acuerdo de voluntades). Existen también <strong>compraventas especiales</strong>: venta a plazos, venta con reserva de dominio (la propiedad no pasa al comprador hasta el pago total), y venta con pacto de retro (el vendedor puede recuperar lo vendido devolviendo el precio).</p>
+        <p>Además del Código de Comercio, hay leyes complementarias clave que regulan aspectos específicos: la Ley de Competencia Desleal (3/1991), la Ley de Ordenación del Comercio Minorista (7/1996), la Ley de morosidad en operaciones comerciales (3/2004), la Ley de comercio electrónico (34/2002) y la Ley General para la Defensa de los Consumidores.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Derecho mercantil:</strong> Rama del derecho privado que regula la figura del empresario, su estatuto y su actividad comercial, industrial y de servicios.</p>
+        <p><span class="badge badge-law">LEY</span> <strong>Código de Comercio:</strong> Aprobado por Real Decreto de 22 de agosto de 1885, entró en vigor el 1 de enero de 1886. Es la norma base del derecho mercantil español.</p>
+        <p><strong>Aspectos regulados por el derecho mercantil:</strong> Constitución y registro de empresas, contabilidad, contratos mercantiles (compraventa, arrendamiento, seguro, transporte), títulos-valores (cheque, pagaré, letra de cambio), concurso de acreedores.</p>
+        <p><strong>Contrato de compraventa mercantil:</strong> Contrato mediante el cual el vendedor transmite la propiedad de una cosa o derecho al comprador a cambio de una contraprestación monetaria.</p>
+        <p><strong>Elementos del contrato de compraventa:</strong> Personales (comprador y vendedor), Reales (la cosa y el precio), Formales (acuerdo de voluntades — puede ser verbal o escrito).</p>
+        <p><strong>Compraventas especiales:</strong> Aquellas con particularidades no presentes en los casos generales — venta a plazos, venta con reserva de dominio, venta con pacto de retro, etc.</p>
+        <p><span class="badge badge-warn">OJO</span> Será mercantil la compraventa de cosas muebles para revenderlas con ánimo de lucro, NO la de cosas inmuebles ni la de objetos para uso propio.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">2. Legislación fiscal básica <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El derecho fiscal regula cómo el Estado recauda impuestos para financiar los gastos públicos. Cuando montas un negocio, tienes que saber de qué impuestos eres responsable antes de empezar.</p>
+        <p>Los tributos se dividen en tres tipos: <strong>tasas</strong> (pagas por un servicio concreto: carné de conducir, vado del garaje), <strong>impuestos</strong> (pagas sin contraprestación directa: IRPF, IVA) y <strong>contribuciones</strong> (mejoras que benefician tus bienes: asfaltar tu calle). Los impuestos son los más importantes del temario y se dividen en directos (gravan la renta o el patrimonio: IRPF para autónomos y personas físicas, Impuesto de Sociedades para empresas, Impuesto sobre el Patrimonio) e indirectos (gravan el consumo: IVA, Transmisiones Patrimoniales, Impuestos Especiales sobre alcohol, tabaco e hidrocarburos).</p>
+        <p>Todo impuesto tiene los mismos elementos: hecho imponible (qué lo activa), base imponible (sobre qué se calcula), tipo impositivo (el porcentaje), cuota íntegra (resultado de aplicar el tipo), deducciones (lo que se resta de la cuota), y cuota diferencial (lo que finalmente ingresas o te devuelven).</p>
+        <p>Los impuestos más habituales para una empresa son: el <strong>IVA</strong> (casi siempre, salvo exenciones), el <strong>IRPF</strong> si eres autónomo o empresario individual, el <strong>Impuesto de Sociedades</strong> (Ley 27/2014) si operas como SL o SA, el <strong>IAE</strong> (Impuesto sobre Actividades Económicas), aunque están exentos quienes facturen menos de 1.000.000 € al año, y el <strong>IBI</strong> si tienes inmuebles.</p>
+        <p>Las obligaciones formales al abrir un negocio: inscripción en el Registro Mercantil, darse de alta en Hacienda con el modelo 036 o 037, llevar contabilidad y presentar declaraciones fiscales periódicas.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Impuestos directos:</strong> Gravan directamente la capacidad económica del sujeto (renta, patrimonio). Ejemplos: IRPF (personas físicas), Impuesto de Sociedades (empresas), Impuesto sobre el Patrimonio.</p>
+        <p><strong>Impuestos indirectos:</strong> Se aplican sobre una manifestación indirecta de la capacidad económica (el consumo). Ejemplos: IVA, Impuesto de Transmisiones Patrimoniales, Impuestos Especiales (alcohol, tabaco, hidrocarburos).</p>
+        <p><strong>IAE (Impuesto sobre Actividades Económicas):</strong> Grava el ejercicio de actividades empresariales, profesionales o artísticas. Están exentos quienes tengan un importe neto de cifra de negocios inferior a 1.000.000 €.</p>
+        <p><strong>Obligaciones tributarias formales del empresario:</strong> Inscripción en el Registro Mercantil, darse de alta en Hacienda (Modelo 036/037), llevar contabilidad, presentar declaraciones fiscales periódicas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">3. Legislación sobre el IVA — Todo lo que hay que saber <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El IVA es el impuesto estrella del temario. Lo que hay que entender de raíz es esto: el IVA lo paga el consumidor final, pero los empresarios actúan de recaudadores intermedios. Para ellos no es ni coste ni ingreso: simplemente cobran IVA a sus clientes (IVA repercutido) y pagan IVA a sus proveedores (IVA soportado). Cada trimestre hacen la diferencia y la pagan o la reclaman a Hacienda mediante el <strong>modelo 303</strong>.</p>
+        <p>Ejemplo del manual: el pescador vende sardinas a la fábrica de conservas, que las vende al supermercado, que las vende al consumidor. Cada empresa liquida solo la parte de IVA que ella ha añadido. Al final, el total que paga el consumidor coincide exactamente con la suma de todos los IVA ingresados en cadena. El empresario no se queda con nada.</p>
+        <p>Los tres tipos: <strong>4%</strong> para alimentos básicos (pan, leche, huevos, frutas, verduras), medicamentos humanos, libros, periódicos, VPO y coches para minusválidos. <strong>10%</strong> para alimentos en general, hostelería, viviendas, transporte de viajeros, gafas de vista (no de sol), entradas a museos, teatros y espectáculos culturales. <strong>21%</strong> para todo lo demás.</p>
+        <p>Las <strong>operaciones no sujetas</strong> no tienen hecho imponible (el IVA no existe en esa operación): transmisión de una unidad económica autónoma, muestras gratuitas de promoción, impresos publicitarios de menos de 200 € al año por cliente, servicios de trabajadores asalariados a su empresa, entrega de dinero. Las <strong>operaciones exentas</strong> sí tienen hecho imponible pero no se grava: sanidad, educación, servicios sociales, seguros, operaciones financieras, loterías del Estado, sellos de correos. Ojo: no sujeta ≠ exenta.</p>
+        <p>Exenciones <strong>plenas</strong> (exportaciones, entregas intracomunitarias): no se repercute IVA pero sí se puede deducir el soportado. Exenciones <strong>limitadas</strong> (operaciones interiores como educación o sanidad): no se repercute ni se puede deducir el soportado.</p>
+        <p>El plazo para presentar el modelo 303: los 20 primeros días del mes siguiente a cada trimestre (abril, julio, octubre) y hasta el 30 de enero para el cuarto trimestre. Las empresas con facturación anual superior a 6.010.121,04 € liquidan mensualmente. Hay un régimen especial, el <strong>recargo de equivalencia</strong>, obligatorio para comerciantes minoristas personas físicas: su proveedor les cobra IVA + recargo (5,2% al tipo general, 1,4% al reducido, 0,5% al superreducido) y ellos ya no tienen que liquidar nada a Hacienda.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><span class="badge badge-law">LEY</span> <strong>Ley 37/1992, de 28 de diciembre</strong> (LIVA) y Reglamento RD 1624/1992 regulan el IVA en España.</p>
+        <p><strong>¿Qué grava el IVA?</strong> Las entregas de bienes y prestaciones de servicios, las adquisiciones intracomunitarias de bienes y las importaciones. En todo el territorio español EXCEPTO Ceuta, Melilla y Canarias (tienen sus propios impuestos indirectos).</p>
+        <p><strong>Sujeto pasivo:</strong> El empresario o profesional que realiza la entrega de bienes/servicios y expide la factura. Es un mero intermediario: no le supone coste ni ingreso.</p>
+        <p><strong>Hecho imponible:</strong> La entrega de bienes y prestación de servicios realizada por empresarios o profesionales. Tipos: entregas de bienes, prestaciones de servicios, adquisiciones intracomunitarias, importaciones.</p>
+        <p><strong>Base imponible:</strong> Importe total de la contraprestación procedente del destinatario o de terceras partes (art. 78-83 LIVA). En la factura, es la valoración monetaria del hecho imponible.</p>
+        <div class="grid-2">
+          <div class="card-mini"><strong>Tipo superreducido 4 %</strong><p>Alimentos básicos (pan, leche, huevos, frutas, verduras), medicamentos humanos, libros y periódicos, coches para minusválidos, prótesis, VPO.</p></div>
+          <div class="card-mini"><strong>Tipo reducido 10 %</strong><p>Productos alimenticios en general, productos sanitarios (gafas de vista incluidas, sol excluidas), hostelería, viviendas, transporte de viajeros, entradas a espectáculos culturales, servicios de limpieza pública.</p></div>
+          <div class="card-mini"><strong>Tipo general 21 %</strong><p>Todo lo que no tribute al 10 % ni al 4 %. Es el tipo que se aplica por defecto si no hay mención expresa.</p></div>
+          <div class="card-mini"><strong>Liquidación trimestral</strong><p>IVA a ingresar/devolver = IVA repercutido (cobrado a clientes) − IVA soportado (pagado a proveedores). Modelo 303.</p></div>
+        </div>
+        <p><strong>IVA repercutido:</strong> El que el empresario cobra a sus clientes al vender. Se suma a la factura emitida.</p>
+        <p><strong>IVA soportado:</strong> El que el empresario paga a sus proveedores al comprar. Aparece en las facturas recibidas.</p>
+        <p><strong>Resultado de la liquidación:</strong> Si IVA repercutido &gt; IVA soportado → ingresa la diferencia a Hacienda. Si IVA repercutido &lt; IVA soportado → Hacienda le devuelve (o compensa).</p>
+        <p><strong>Operaciones NO sujetas al IVA:</strong> Transmisión de una unidad económica autónoma, muestras gratuitas de promoción, entrega de impresos publicitarios (valor ≤ 200 € por cliente/año), servicios de trabajadores asalariados a su empresa, entregas de dinero.</p>
+        <p><strong>Operaciones exentas:</strong> Existe hecho imponible pero no se aplica el impuesto. Actividades médicas/sanitarias, educativas, servicios sociales, culturales o deportivos, seguros y operaciones financieras, sellos de correos, loterías del Estado.</p>
+        <p><span class="badge badge-warn">OJO</span> <strong>No sujeta ≠ Exenta.</strong> No sujeta = no existe hecho imponible. Exenta = sí existe hecho imponible pero no se grava.</p>
+        <p><strong>Exenciones plenas vs. limitadas:</strong> Plenas (exportaciones, entregas intracomunitarias): no se repercute IVA pero sí se puede deducir el soportado. Limitadas (operaciones interiores): no se repercute IVA y tampoco se puede deducir el soportado.</p>
+        <p><strong>Devengo del IVA:</strong> Momento en que se produce el hecho que origina la exigibilidad del impuesto — generalmente con la entrega del bien o la prestación del servicio.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">4. Legislación mercantil y fiscal de la Unión Europea <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Desde que España entró en la UE, parte de la legislación mercantil y fiscal ya no la hace solo España: la hace Europa, y España la tiene que aplicar. El mercado único se asienta en cuatro libertades: libre circulación de mercancías, personas, servicios y capitales. Eso implica libre competencia y protección del consumidor en todos los estados miembro.</p>
+        <p>Los seis organismos principales: el <strong>Consejo Europeo</strong> (jefes de Estado y de Gobierno, toma las grandes decisiones políticas), el <strong>Parlamento Europeo</strong> (elegido por los ciudadanos, legisla junto al Consejo de la UE), el <strong>Consejo de la UE</strong> (los ministros de cada estado, poder legislativo real), la <strong>Comisión Europea</strong> (poder ejecutivo, propone legislación y vigila su cumplimiento), el <strong>Tribunal de Justicia de la UE</strong> (garantiza que los estados cumplen las leyes europeas), y el <strong>Banco Central Europeo</strong> (gestiona el euro y la política monetaria).</p>
+        <p>Las normas europeas tienen jerarquía: <strong>Reglamentos</strong> → obligatorios y de aplicación directa en todos los estados, sin necesidad de adaptación. <strong>Directivas</strong> → obligan en cuanto al resultado a conseguir, pero cada estado elige cómo trasponerlas a su legislación. Ejemplo: la Ley 37/1992 del IVA es la transposición española de una directiva europea. <strong>Decisiones</strong> → obligatorias solo para sus destinatarios concretos. <strong>Recomendaciones y dictámenes</strong> → no son vinculantes.</p>
+        <p>En materia fiscal, la UE distingue: <strong>fiscalidad directa</strong> (IRPF, IS) → competencia de cada estado, aunque hay normas armonizadas para evitar la doble imposición. <strong>Fiscalidad indirecta</strong> (IVA, impuestos especiales) → la UE coordina y armoniza directamente, porque afecta a la libre circulación del mercado único.</p>
+        <p>Las <strong>operaciones intracomunitarias</strong> son las compraventas entre empresas de distintos estados miembro. La regla general: si un empresario español compra a un empresario alemán, el IVA se paga en España (país de destino), no en Alemania. Si un particular compra en Francia, paga el IVA en Francia. Las exportaciones e importaciones son con países fuera de la UE: las exportaciones están exentas de IVA; las importaciones están sujetas y se liquidan en la aduana.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Principales organismos de la UE:</strong> Parlamento Europeo (legislativo, elegido por ciudadanos), Consejo de la UE (representa a los gobiernos de los estados miembro), Comisión Europea (poder ejecutivo, propone legislación), Tribunal de Justicia de la UE, Banco Central Europeo, Tribunal de Cuentas.</p>
+        <p><strong>Tipos de normas europeas:</strong></p>
+        <p>· <strong>Reglamento:</strong> Obligatorio y directamente aplicable en todos los estados miembro sin necesidad de adaptación nacional.</p>
+        <p>· <strong>Directiva:</strong> Obliga a los estados miembro en cuanto al resultado a conseguir, pero les deja libertad para elegir la forma y los medios de transposición al derecho nacional.</p>
+        <p>· <strong>Decisión:</strong> Obligatoria en todos sus elementos para sus destinatarios específicos.</p>
+        <p>· <strong>Recomendación/Dictamen:</strong> No son vinculantes.</p>
+        <p><strong>Principios del mercado único:</strong> Libre circulación de mercancías, personas, servicios y capitales. Libre competencia. Defensa del consumidor.</p>
+        <p><strong>Operaciones intracomunitarias:</strong> Las entregas y adquisiciones de bienes entre empresas de distintos estados miembro de la UE tienen un tratamiento especial del IVA — generalmente exentas en el estado de origen y gravadas en el estado de destino.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== UA3 ===================== -->
+<div class="panel" id="panel-u3">
+  <div class="unit-header">
+    <div class="unit-num">03</div>
+    <div class="unit-title-block">
+      <h2>Gestión de stock e inventarios</h2>
+      <p>Almacenamiento · Inventarios · Métodos de valoración PMP y FIFO · Control de calidad</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle open" onclick="toggleSection(this)">1. Conceptos básicos: existencias, inventarios y aprovisionamiento <span class="chevron">▼</span></button>
+    <div class="section-body open">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El almacén es donde se guarda todo lo que la empresa necesita para funcionar: materias primas, productos en fabricación, productos terminados, mercaderías para vender, envases, embalajes y repuestos. Sin stock no puedes producir ni vender, pero demasiado stock inmoviliza dinero. El objetivo es el equilibrio.</p>
+        <p>Las existencias se clasifican según el tipo de empresa. En empresas de producción: materias primas (para transformar), productos semiterminados (en proceso), productos terminados (listos para vender) y subproductos (lo que sale inevitablemente del proceso). En empresas comerciales (como Blasoptical): solo mercaderías, que se compran para revender sin transformar.</p>
+        <p>El ciclo de aprovisionamiento en una empresa productora es: Compras → Stock de materias primas → Producción → Stock de productos terminados → Ventas → Cobro. En una empresa comercial es más corto: Compras → Stock → Ventas → Cobro. El tiempo que tarda este ciclo completo se llama <strong>Período Medio de Maduración (PMM)</strong>: cuanto más corto, mejor, porque significa que el dinero invertido vuelve antes.</p>
+        <p>La <strong>rotación de existencias</strong> mide cuántas veces se renuevan las existencias en un período: R = Coste anual de ventas / Promedio de existencias. Rotación alta = el almacén está vivo y la inversión es productiva. Rotación baja = el dinero está parado. Si es demasiado alta, cuidado con el desabastecimiento.</p>
+        <p>Los bienes de consumo se clasifican en: <strong>bienes de uso común</strong> (básicos como el pan, de impulso como las chucherías en las cajas, de emergencia como el paraguas bajo la lluvia), <strong>bienes de comparación</strong> (el consumidor compara antes de comprar: un coche, una vivienda) y <strong>bienes de especialidad</strong> (el comprador está dispuesto a esforzarse por conseguirlos, aunque sean más caros o escasos).</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Existencias (inventarios):</strong> Variedad de materiales utilizados en la empresa y guardados en almacenes a la espera de ser utilizados, vendidos o consumidos. Permiten mantener continuidad en la actividad sin verse afectados por retrasos del proveedor.</p>
+        <p><strong>Activo corriente:</strong> Derechos, bienes materiales o créditos destinados o procedentes de operaciones mercantiles, susceptibles de transformarse en dinero efectivo. Con carácter general, no exceden de un año.</p>
+        <p><strong>Tipos de existencias:</strong> Materias primas (para transformar), productos semiterminados (en proceso de fabricación), productos terminados (listos para vender), mercaderías (compradas para reventa sin transformar), envases y embalajes, repuestos.</p>
+        <p><strong>Ciclo de aprovisionamiento (empresa productora):</strong> Compras → Stock de materias primas → Producción → Stock de productos terminados → Ventas.</p>
+        <p><strong>Período Medio de Maduración (PMM):</strong> Tiempo que transcurre desde que se invierte dinero en materias primas hasta que se recupera con el cobro a clientes. Cuanto menor sea el PMM, mejor para la empresa (menor necesidad de financiación).</p>
+        <p><strong>Rotación de existencias:</strong> Número de veces que las existencias salen del almacén y son repuestas en un período. A mayor rotación, más eficiente la gestión del almacén.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">2. Sistemas de almacenaje y ubicación de existencias <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>No todos los almacenes son iguales: el sistema que uses depende de qué guardas, cuánto rota y cuánto espacio tienes. Las técnicas principales son: <strong>carga unitaria</strong> (palés de 1100×1100mm, para todo lo que se pueda paletizar), <strong>cajas o cajones</strong> (para artículos pequeños: tornillos, material de oficina), <strong>estanterías</strong> (el sistema más económico y versátil, para piezas livianas), <strong>columnas</strong> (para piezas largas: tubos, barras, correas), <strong>apilamientos</strong> (cajas apiladas para aprovechar el espacio vertical) y <strong>contenedores flexibles</strong> (para líquidos y sólidos a granel, de 500 a 1.000 kg, se mueven con apiladoras o grúas).</p>
+        <p>El personal de almacén tiene funciones muy concretas en este orden: (1) <strong>Recibir la mercancía</strong>: abrir la puerta al transportista, comprobar la documentación y descargar. (2) <strong>Comprobar e inspeccionar</strong>: verificar que la cantidad y calidad coinciden con lo pedido. Solo entonces se firma el albarán. Si hay anomalías (mercancía defectuosa, cantidades incorrectas, embalaje dañado), no se firma y se devuelve. (3) <strong>Clasificar e inventariar</strong>: identificar la mercancía y darla de alta en el sistema. (4) <strong>Paletizar y colocar</strong> de forma ordenada, cuidando que no se deteriore. (5) <strong>Preparar pedidos</strong> para producción o para ventas. (6) <strong>Envasar y etiquetar</strong> para expedición. (7) <strong>Dar de baja en inventario</strong> las mercancías que salen.</p>
+        <p>El proceso de expedición (cuando la mercancía sale) también tiene un orden: embalaje → precintado → etiquetado → pesado → paletización → control de salida → carga de vehículos → emisión de documentación (albarán + carta-porte) → confirmación de salida actualizando el stock en el sistema.</p>
+        <p>Si se descubren anomalías en el momento de la recepción, el encargado no debe quedarse la mercancía ni firmar. El transportista la devuelve y se informa al proveedor exigiendo solución. Si las anomalías se descubren después (al usar el producto), se procede igual: devolución y reclamación escrita.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Funciones del personal de almacén:</strong> Recibir mercancías (comprobar documentación, descargar), comprobar e inspeccionar (cantidad y calidad = firmar albarán), clasificar e inventariar (dar de alta), paletizar y colocar, preparar pedidos, envasar y etiquetar para expedición, dar de baja en inventario las salidas.</p>
+        <p><strong>Técnicas de almacenamiento:</strong> Carga unitaria (palé 1100×1100mm), cajas/cajones (artículos pequeños), estanterías (más económico, pequeñas piezas), columnas (piezas largas — tubos, barras), apilamientos (cajas apiladas para aprovechar vertical), contenedores flexibles (líquidos y sólidos a granel, 500-1000 kg).</p>
+        <p><strong>Variables que determinan el sistema:</strong> Características y dimensiones de los materiales, rotación de las existencias, tipo de empresa, espacio disponible.</p>
+        <p><strong>Proceso de expedición:</strong> Embalaje → Precintado → Etiquetado → Pesado → Paletización → Control de salida → Carga de vehículos → Emisión de documentación (albarán, carta-porte) → Confirmación de salida (actualizar stock).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">3. Elaboración e interpretación de inventarios <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El inventario es el recuento físico de todas las mercancías del almacén en un momento concreto. Se hace al menos una vez al año y su función es verificar que lo que hay físicamente coincide con lo que dice el sistema informático (o las fichas de almacén). Si no cuadra, hay que encontrar el motivo.</p>
+        <p>El proceso es: recuento físico → cotejo con el registro informático → si hay diferencias, investigar la causa. Las causas más frecuentes de descuadre son: pérdidas o extravíos, hurtos, deterioro de mercancía, errores en el registro de entradas o salidas. Cada diferencia tiene que documentarse y justificarse por escrito.</p>
+        <p>La herramienta que se usa para el seguimiento continuo es la <strong>ficha de almacén</strong>: una ficha individual por cada tipo de mercancía con tres columnas (Entradas, Salidas, Existencias). Cada movimiento se registra inmediatamente. El registro del material inventariable debe coincidir siempre con las fichas de producto; si no, se ajusta con la explicación de las diferencias.</p>
+        <p>Los productos <strong>obsoletos o deteriorados</strong> (demasiado tiempo en almacén, humedad, otros factores) se dan de baja del inventario con la justificación escrita correspondiente. No vale dejarlos en el sistema como si existieran: eso falsea el activo de la empresa.</p>
+        <p>El <strong>cotejo o punteo</strong> es la verificación cruzada de documentos: por ejemplo, cuando llega la factura, se localiza el albarán correspondiente y se comprueba que los datos coinciden antes de pagar. Es un instrumento de control que evita errores y fraudes. Hoy en día los programas de gestión tipo BPMS automatizan gran parte de este trabajo.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Inventario:</strong> Anotación y valoración de todos los bienes físicos del almacén en un momento determinado. Recuento físico al menos una vez al año.</p>
+        <p><strong>Proceso de cotejo:</strong> Recuento físico → Comparar con el registro informático → Si hay diferencias: buscar la causa (pérdidas, extravíos, hurtos, deterioro).</p>
+        <p><strong>Obsolescencia:</strong> Productos que han quedado inutilizables por tiempo excesivo en almacén, humedades u otros factores. Se dan de baja con justificación escrita.</p>
+        <p><strong>Ficha de almacén:</strong> Registro individual por producto con tres columnas: Entradas (compras), Salidas (ventas/consumos) y Existencias (stock actual). Puede ser papel o software.</p>
+        <p><strong>Registro de material inventariable:</strong> Debe coincidir con las fichas de producto. Si no coincide, se ajusta explicando las razones de las diferencias.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">4. Métodos de valoración de existencias: PMP y FIFO <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>El problema es sencillo de entender: si compraste 20 unidades de un artículo a 75 € y luego compras 30 unidades más a 70 €, ¿a cuánto valoras las que tienes en almacén? No todas costaron lo mismo. El Plan General de Contabilidad (RD 1514/2007) obliga a elegir entre dos métodos: PMP o FIFO. El LIFO quedó eliminado.</p>
+        <p>El <strong>PMP (Precio Medio Ponderado)</strong> mezcla todos los lotes haciendo una media ponderada cada vez que entra mercancía nueva a distinto precio. Fórmula: PMP = (Σ cantidad × precio de cada lote) / total de unidades. Con el ejemplo del manual: (20 × 75 + 30 × 70) / 50 = (1.500 + 2.100) / 50 = 72 €/ud. A partir de ahí, todas las salidas salen a 72 € hasta que haya una nueva entrada a precio diferente, momento en que se recalcula el PMP.</p>
+        <p>El <strong>FIFO (First In, First Out)</strong> no mezcla precios: mantiene cada lote por separado y las salidas se hacen siempre del lote más antiguo primero, a su precio original. Las existencias finales quedan valoradas a los precios más recientes. Ejemplo: si tienes 20 ud. a 75 € y luego entran 30 ud. a 70 €, cuando salgan 25 uds., las primeras 20 salen a 75 € y las 5 restantes a 70 €. En almacén quedan 25 ud. a 70 €.</p>
+        <p>¿Cuándo conviene cada uno? El PMP es más fácil de calcular y da un precio homogéneo. El FIFO refleja mejor los precios actuales en el valor de las existencias finales, lo que puede interesar en épocas de inflación para mostrar un activo más actualizado.</p>
+        <p>El <strong>precio de adquisición</strong> que se usa como base de valoración incluye: importe facturado − descuentos + todos los gastos hasta poner la mercancía en condición de venta (transporte, aranceles de aduana, seguros). No incluye el IVA recuperable. Ejemplo del manual: compra en Japón de 1.500 unidades a 30 €, descuento 15%, aranceles 1.345 €, transporte y seguro 700 € → coste total = 40.295 € → precio unitario = 26,86 €/ud.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><span class="badge badge-law">PGC</span> Los métodos permitidos por el Plan General de Contabilidad (RD 1514/2007 y RD 1515/2007) son únicamente PMP y FIFO. El LIFO fue eliminado.</p>
+        <p><strong>Precio de adquisición:</strong> Importe facturado − descuentos + todos los gastos hasta poner los bienes en condición de venta (transporte, aranceles, seguros). No incluye IVA recuperable.</p>
+        <p><strong>Coste de producción:</strong> Precio de adquisición de materias primas + costes directamente imputables al producto + parte razonable de costes indirectos.</p>
+        <h4>Método PMP — Precio Medio Ponderado</h4>
+        <p>Calcula un precio medio ponderando entradas y existencias actuales. Se recalcula cada vez que hay una entrada a precio diferente.</p>
+        <p><strong>Fórmula PMP:</strong> (Σ Cantidad × Precio de cada lote) / Total de unidades</p>
+        <p><strong>Entradas:</strong> Se valoran al precio de adquisición o coste de producción.</p>
+        <p><strong>Salidas:</strong> Se valoran al PMP vigente en ese momento en el almacén.</p>
+        <p><strong>Ejemplo:</strong> Existencias 20 ud. a 75 € → nuevo PMP tras comprar 30 ud. a 70 € = (20×75 + 30×70) / 50 = (1.500 + 2.100) / 50 = 72 €/ud.</p>
+        <h4>Método FIFO — First In, First Out</h4>
+        <p>Los artículos salen del almacén en el mismo orden en que entraron. Las existencias se mantienen valoradas de forma diferenciada por lote (no se mezclan precios).</p>
+        <p><strong>Entradas:</strong> Se valoran al precio de adquisición/coste de producción de cada lote, anotados por separado.</p>
+        <p><strong>Salidas:</strong> Se dan salida primero a las unidades más antiguas (las que entraron antes), a su precio original. Si no hay suficientes, se continúa con el siguiente lote.</p>
+        <p><strong>Existencias finales:</strong> Quedan valoradas a los precios más recientes (los que entraron después).</p>
+        <div class="grid-2">
+          <div class="card-mini"><strong>PMP — Resumen</strong><p>Se calcula un precio medio a cada nueva entrada. Las salidas van todas al mismo PMP. Fácil de calcular, precio homogéneo.</p></div>
+          <div class="card-mini"><strong>FIFO — Resumen</strong><p>Precios separados por lote. Las salidas son siempre del lote más antiguo. Las existencias finales reflejan precios más actuales.</p></div>
+        </div>
+        <p><span class="badge badge-warn">RECUERDA</span> El Plan General de Contabilidad 2007 eliminó el LIFO (Last In, First Out). Solo están admitidos PMP y FIFO.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="section-toggle" onclick="toggleSection(this)">5. Control de calidad en la gestión de almacén <span class="chevron">▼</span></button>
+    <div class="section-body">
+      <div class="explain-box">
+        <span class="label">🗣 De tú a tú</span>
+        <p>Guardar mercancía no es suficiente: hay que garantizar que llega bien, se almacena bien y sale bien. El control de calidad en el almacén tiene tres momentos clave: recepción, almacenamiento y expedición.</p>
+        <p>En la <strong>recepción</strong>: verificar que la mercancía coincide en cantidad y calidad con lo pedido. El encargado solo firma el albarán si todo está conforme. Si hay anomalías (mercancía defectuosa, cantidades incorrectas, embalaje dañado, mercancía no solicitada), no se firma y se devuelve al transportista. Se informa al proveedor y se le exige solución.</p>
+        <p>En el <strong>almacenamiento</strong>: mantener condiciones adecuadas de temperatura, humedad y luz. Aplicar el FIFO físicamente (sobre todo en productos perecederos) para que lo más antiguo salga primero y no haya caducidades. Cada producto debe estar correctamente identificado con su etiqueta.</p>
+        <p>En la <strong>expedición</strong>: verificar cantidad y estado antes de cargar. Documentación correcta (albarán + carta-porte). Actualizar el stock en el sistema nada más salir la mercancía.</p>
+        <p>El etiquetado de los productos tiene cuatro tipos: etiquetas de <strong>contenido</strong> (identifican el producto), etiquetas de <strong>manipulación</strong> (instrucciones de manejo: frágil, este lado arriba, no apilar), etiquetas de <strong>control</strong> (seguimiento interno del almacén) y etiquetas de <strong>peligro</strong> (sustancias peligrosas, temperatura, humedad). Hay normativa específica: RD 1468/1988 para productos industriales, RD 1334/1999 para alimentación, RD 928/1987 para textiles.</p>
+        <p>Los sistemas de gestión de calidad más habituales son la <strong>ISO 9001</strong> (el estándar más extendido a nivel mundial), el modelo <strong>EFQM</strong> (europeo, basado en la excelencia empresarial) y el <strong>control estadístico de procesos (SPC)</strong>, que usa datos estadísticos para detectar desviaciones antes de que se conviertan en problemas.</p>
+      </div>
+      <div class="manual-box">
+        <span class="label">📘 Manual dice</span>
+        <p><strong>Sistemas de control de calidad:</strong> ISO 9001 (sistema de gestión de calidad más extendido), EFQM (modelo europeo de excelencia), control estadístico de procesos (SPC).</p>
+        <p><strong>Control en recepción:</strong> Verificar que la mercancía recibida coincide en cantidad y calidad con lo pedido. Se firma el albarán solo si todo es correcto; en caso de incidencias se hace constar por escrito.</p>
+        <p><strong>Control de almacenamiento:</strong> Condiciones de temperatura, humedad y luz adecuadas. Correcta aplicación del sistema FIFO (especialmente en productos perecederos) para evitar caducidades. Identificación correcta de cada producto.</p>
+        <p><strong>Control de expedición:</strong> Verificar cantidad y estado de la mercancía antes de cargarla. Documentación correcta (albarán, carta-porte). Actualizar el stock en el sistema.</p>
+        <p><strong>Etiquetas de manipulación:</strong> Etiquetas de contenido (identifican el producto), etiquetas de manipulación (instrucciones de manejo), etiquetas de control (seguimiento interno), etiquetas de peligro (sustancias peligrosas, productos frágiles, etc.).</p>
+        <p><span class="badge badge-law">LEY</span> Normativa de etiquetado: RD 1468/1988 (productos industriales), RD 1334/1999 (productos alimentarios), RD 928/1987 (textiles).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== FLASHCARDS ===================== -->
+<div class="panel" id="panel-flash">
+  <div class="unit-header">
+    <div class="unit-num">🃏</div>
+    <div class="unit-title-block">
+      <h2>Flashcards</h2>
+      <p>Haz clic en la tarjeta para ver la respuesta · 44 tarjetas de las 3 unidades</p>
+    </div>
+  </div>
+  <p class="fc-hint">Toca la tarjeta para girarla · Usa las flechas para navegar</p>
+  <div class="flashcard-wrap" onclick="flipCard()">
+    <div class="flashcard" id="flashcard">
+      <div class="fc-front"><p id="fc-front-text"></p></div>
+      <div class="fc-back"><p id="fc-back-text"></p></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button onclick="prevCard()">← Anterior</button>
+    <button onclick="nextCard()">Siguiente →</button>
+  </div>
+  <p class="fc-counter" id="fc-counter"></p>
+</div>
+
+<!-- ===================== QUIZ ===================== -->
+<div class="panel" id="panel-quiz">
+  <div class="unit-header">
+    <div class="unit-num">✏️</div>
+    <div class="unit-title-block">
+      <h2>Quiz de autoevaluación</h2>
+      <p>Pon a prueba tus conocimientos · 30 preguntas tipo test</p>
+    </div>
+  </div>
+  <div class="quiz-container" id="quiz-container"></div>
+  <div class="quiz-score" id="quiz-score">
+    <p>Resultado final</p>
+    <div class="score-big" id="score-num"></div>
+    <button class="quiz-reset" onclick="resetQuiz()">Volver a intentarlo</button>
+  </div>
+</div>
+
+<!-- ===================== MATCH ===================== -->
+<div class="panel" id="panel-match">
+  <div class="unit-header">
+    <div class="unit-num">🔗</div>
+    <div class="unit-title-block">
+      <h2>Juego de unir conceptos</h2>
+      <p>Selecciona un término y su definición correcta</p>
+    </div>
+  </div>
+  <div class="match-grid" id="match-grid"></div>
+  <div class="match-result" id="match-result"></div>
+  <div style="text-align:center">
+    <button class="quiz-reset" onclick="newMatchRound()">Nueva ronda</button>
+  </div>
+</div>
+
+<script>
+// ---- TABS ----
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ---- SECTION TOGGLES ----
+function toggleSection(btn) {
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// ---- FLASHCARDS ----
+const cards = [
+  // UA1 — Compraventa
+  { q: "¿Qué es el aprovisionamiento y cuáles son sus 4 fases?", a: "Proceso mediante el cual una empresa adquiere el material que necesita. Fases: 1) Análisis de necesidades (qué, cuánto, cuándo), 2) Búsqueda de proveedores (guías, ferias, internet), 3) Valoración y selección (ponderación por criterios), 4) Obtención y almacenamiento (recepción con albarán)." },
+  { q: "¿Cuáles son los criterios de selección de proveedores y cómo se ponderan?", a: "Criterios: precio, calidad, forma y plazo de pago, plazo de entrega, servicio postventa, y otros (localización, tamaño, situación económica). Se asigna un % de ponderación a cada criterio, se puntúa del 1 al 3 a cada proveedor y se multiplica. Gana quien más puntos saca." },
+  { q: "¿Qué es un albarán? ¿Es obligatorio?", a: "Documento que justifica y acredita que la mercancía fue enviada en las condiciones indicadas. Acompaña la mercancía. NO es obligatorio (a diferencia de la factura). Se emite 1 original + 2 copias: el comprador firma una copia y la devuelve al vendedor." },
+  { q: "¿Qué diferencia hay entre albarán valorado y albarán sin valorar?", a: "Valorado: incluye importe total con descuentos e impuestos, además de cantidad y descripción. Sin valorar: solo describe cantidades y artículos, sin referencia al importe." },
+  { q: "¿Cuándo se emite una factura simplificada?", a: "Para operaciones con consumidor final cuando el importe no supera 400 € IVA incluido (o en facturas rectificativas). Ciertos colectivos autorizados pueden emitirla hasta 3.000 € IVA incluido. Está regulada por el art. 4 del RD 1619/2012." },
+  { q: "¿Qué es el IVA repercutido y el IVA soportado?", a: "Repercutido: el que el empresario cobra a sus clientes al emitir facturas de venta. Soportado: el que paga a sus proveedores en las facturas de compra. Liquidación trimestral = Repercutido − Soportado. Positivo → ingresa a Hacienda. Negativo → Hacienda devuelve." },
+  { q: "¿Cuáles son los tres tipos de IVA vigentes y qué incluye cada uno?", a: "Superreducido 4%: alimentos básicos (pan, leche, huevos, frutas, verduras), medicamentos humanos, libros, VPO, coches para minusválidos. Reducido 10%: hostelería, viviendas, transporte de viajeros, gafas de vista, espectáculos culturales, productos alimenticios en general. General 21%: todo lo demás." },
+  { q: "¿Qué diferencia hay entre una operación no sujeta y una operación exenta de IVA?", a: "No sujeta: no existe hecho imponible → directamente fuera del ámbito del impuesto (ej: entrega de dinero, muestras gratuitas). Exenta: sí existe hecho imponible pero la ley no aplica el gravamen (ej: educación, sanidad, seguros)." },
+  { q: "¿Qué es la carta-porte y cuándo se usa?", a: "Documento que refleja el servicio de transporte realizado por una empresa transportista cuando el vendedor usa transporte ajeno. Incluye datos del remitente, destinatario y bultos/volumen. Portes pagados = los paga el vendedor; portes debidos = los paga el comprador." },
+  { q: "¿Qué es el CRM y para qué sirve?", a: "Customer Relationship Management. Sistema tecnológico que permite a las empresas conocer en profundidad a sus clientes y fortalecer la relación con ellos. Objetivo: satisfacer sus necesidades y conseguir su fidelización. Dato: es 5 veces más caro conseguir un cliente nuevo que retener uno existente." },
+  { q: "¿Cuáles son las diferencias entre cheque nominativo y cheque al portador?", a: "Al portador: lo cobra cualquier persona que lo posea. Nominativo: solo la persona indicada en el documento. Cheque cruzado: solo se puede ingresar en cuenta bancaria, NO cobrar en caja. El pagaré, a diferencia del cheque, siempre es nominativo y su pago es en fecha futura." },
+  { q: "¿Cuál es la principal diferencia entre cheque y pagaré?", a: "El cheque es pagadero a la vista (al presentarlo en el banco, se cobra inmediatamente). El pagaré es una promesa de pago a una fecha futura determinada (vencimiento). El pagaré es siempre nominativo; el cheque puede ser al portador." },
+  { q: "¿Cuáles son las exenciones plenas en el IVA y qué las distingue de las limitadas?", a: "Plenas: no se repercute IVA pero SÍ se puede deducir el soportado. Aplican a exportaciones, entregas intracomunitarias y envíos a Ceuta, Melilla o Canarias. Limitadas: no se repercute IVA Y TAMPOCO se puede deducir el soportado. Aplican a operaciones interiores (educación, sanidad, seguros)." },
+  { q: "¿Cuáles son las 5 fases del servicio postventa?", a: "1. Agradecimiento de compra (llamada, correo o email). 2. Comprobar la satisfacción del cliente. 3. Asesoramiento sobre los usos del producto. 4. Servicio de gestión de incidencias (quejas). 5. Información sobre productos accesorios o complementarios." },
+  { q: "¿Cuándo y cómo se emite la factura rectificativa?", a: "Cuando hay errores en la factura original, devoluciones, descuentos o variaciones de precio. Debe expedirse en el momento en que se tiene constancia del error. Debe hacer referencia expresa a la factura original que rectifica (artículo 15 del RD 1619/2012)." },
+  { q: "¿Qué es el cotejo de documentos (punteo) y para qué sirve?", a: "El cotejo es la verificación cruzada de documentos: por ejemplo, cuando llega la factura, se localiza el albarán correspondiente y se comprueba que coinciden todos los datos. Es un instrumento de control para detectar errores y fraudes. Los programas BPMS lo automatizan." },
+  { q: "¿Cuánto tiempo deben conservarse los documentos mercantiles según el Código de Comercio?", a: "Según el artículo 30 del Código de Comercio, los libros, correspondencia, documentación y justificantes concernientes al negocio deben conservarse durante 6 años." },
+  { q: "¿Qué es el marketing relacional y cuál es su característica principal?", a: "Busca crear, fortalecer y mantener relaciones a largo plazo con clientes rentables. Su característica principal es la personalización: conocer al cliente en profundidad, reconocerle y presentarle ofertas ajustadas a su perfil. Está estrechamente ligado a las RRPP." },
+  { q: "¿Cómo se calcula el precio de venta con el método de porcentaje de utilidad?", a: "Precio = Coste / (1 − % margen). Ejemplo: coste 100 €, margen 30% → Precio = 100 / 0,7 = 143 €. Es más fiable que el método coste+margen porque el porcentaje sí está calculado sobre el precio de venta, no sobre el coste." },
+  { q: "¿Qué es la K de proporcionalidad y cuándo se usa?", a: "Se usa cuando en una misma factura hay artículos con distintos tipos de IVA y además descuentos o gastos de compra. Fórmula: K = Precio de coste / Importe bruto. Luego se multiplica K por el precio unitario de cada artículo para repartir los descuentos proporcionales entre las distintas bases imponibles." },
+  { q: "¿Qué tipos de datos son 'especiales' según el RGPD y qué protección tienen?", a: "Son especiales: origen étnico o racial, opiniones políticas, convicciones religiosas, afiliación sindical, datos genéticos o biométricos, salud, vida u orientación sexual. Tienen protección reforzada: su tratamiento está prohibido salvo con consentimiento explícito del interesado u otras excepciones tasadas." },
+  { q: "¿Qué es el SAC y cuáles son sus objetivos?", a: "Servicio de Atención al Cliente. Instrumento de fidelización con objetivos: tratamiento de quejas, reclamaciones y objeciones; mejora de la atención; tratamiento de la insatisfacción; recoger sugerencias; detectar deficiencias en el propio SAC." },
+  { q: "¿Cuál es el ciclo de vida de una incidencia en la empresa?", a: "7 pasos: 1) Identificación, 2) Registro, 3) Clasificación, 4) Priorización, 5) Envío al departamento correspondiente, 6) Investigación y diagnóstico, 7) Resolución y cierre." },
+  // UA2 — Normativa
+  { q: "¿Qué regula el Código de Comercio y cuándo entró en vigor?", a: "Regula el derecho mercantil español: la figura del empresario, contratos mercantiles, títulos-valores (cheques, pagarés, letras), contabilidad, concurso de acreedores. Aprobado el 22 de agosto de 1885, entró en vigor el 1 de enero de 1886. Tiene 955 artículos en 4 libros." },
+  { q: "¿Qué diferencia hay entre un Reglamento y una Directiva de la UE?", a: "Reglamento: obligatorio y directamente aplicable en todos los estados miembro SIN necesidad de adaptación nacional. Directiva: obliga en cuanto al resultado a conseguir pero cada estado elige la forma y los medios de transposición a su derecho interno." },
+  { q: "¿Cuáles son los elementos de un impuesto?", a: "Hecho imponible (qué activa el impuesto), base imponible (sobre qué se calcula), reducciones, base liquidable, tipo impositivo (%), cuota íntegra (base liquidable × tipo), deducciones, cuota líquida, retenciones/pagos a cuenta, cuota diferencial (lo que finalmente se ingresa o devuelve)." },
+  { q: "¿Qué diferencia hay entre impuesto directo e indirecto?", a: "Directo: grava directamente la renta o patrimonio del sujeto (IRPF para personas físicas, Impuesto de Sociedades para empresas). Indirecto: grava el consumo de bienes y servicios o las transmisiones de bienes y derechos en general (IVA, Transmisiones Patrimoniales, Impuestos Especiales)." },
+  { q: "¿Qué es el contrato de compraventa mercantil y qué lo diferencia del civil?", a: "Es mercantil la compraventa de cosas muebles para revenderlas con ánimo de lucrarse en la reventa (art. 325 C. Com.). Se diferencia del civil en el ánimo de lucro en la reventa. Debe ser bilateral, oneroso y consensual." },
+  { q: "¿Qué son las operaciones intracomunitarias?", a: "Entregas y adquisiciones de bienes entre empresas de distintos estados miembro de la UE. Regla: empresario → IVA en el país de destino (el que compra). Particular → IVA en el país de origen (el que vende). Las entregas intracomunitarias están exentas en origen y gravadas en destino." },
+  { q: "¿Qué es el recargo de equivalencia y a quién se aplica?", a: "Régimen especial del IVA, obligatorio para comerciantes minoristas personas físicas que venden al consumidor final sin transformar los productos. Los proveedores les cobran IVA + recargo (5,2% al 21%, 1,4% al 10%, 0,5% al 4%). El minorista no tiene que liquidar IVA a Hacienda." },
+  { q: "¿Qué es el IAE (Impuesto sobre Actividades Económicas)?", a: "Tributo directo de carácter real que grava el ejercicio de cualquier actividad empresarial, profesional o artística. Es obligatorio por el mero ejercicio de la actividad, independientemente de los beneficios. Están exentos quienes tengan cifra de negocios inferior a 1.000.000 € anuales." },
+  { q: "¿Qué normas europeas existen y cuál es su jerarquía?", a: "Reglamento (vinculante, directamente aplicable en todos los estados), Directiva (vinculante en el resultado, libre en la forma de transposición), Decisión (vinculante solo para sus destinatarios), Recomendación y Dictamen (no vinculantes)." },
+  // UA3 — Almacén
+  { q: "¿Qué métodos de valoración de existencias admite el PGC?", a: "Únicamente PMP (Precio Medio Ponderado) y FIFO (First In, First Out). El LIFO fue eliminado por el Plan General de Contabilidad de 2007 (RD 1514/2007 y RD 1515/2007)." },
+  { q: "¿Cómo funciona el método PMP? Fórmula.", a: "Se calcula un precio medio ponderado a partir de las unidades y precios de todas las entradas. Fórmula: PMP = (Σ Cantidad × Precio de cada lote) / Total de unidades. Las salidas se valoran al PMP vigente. Se recalcula con cada nueva entrada a precio diferente." },
+  { q: "¿Cómo funciona el método FIFO?", a: "Primera entrada, primera salida (First In, First Out). Los lotes se anotan por separado sin mezclar precios. Las salidas salen siempre del lote más antiguo a su precio original. Las existencias finales quedan valoradas a los precios más recientes (los que entraron después)." },
+  { q: "¿Qué es el Período Medio de Maduración (PMM)?", a: "Tiempo que transcurre desde que la empresa invierte dinero en materias primas hasta que recupera ese dinero con el cobro a clientes. Cuanto menor es el PMM, mejor para la liquidez. En empresa comercial: Compras → Stock → Ventas → Cobro." },
+  { q: "¿Qué es la rotación de existencias y cómo se calcula?", a: "Mide cuántas veces se renuevan las existencias en un período. Fórmula: R = Coste anual de ventas / Promedio de existencias. Rotación alta = almacén eficiente, dinero circulando. Rotación baja = stock parado, dinero inmovilizado. Demasiado alta → riesgo de desabastecimiento." },
+  { q: "¿Cuáles son las técnicas de almacenamiento?", a: "Carga unitaria (palés 1100×1100mm), cajas/cajones (artículos pequeños), estanterías (más económico, piezas livianas), columnas (piezas largas: tubos, barras), apilamientos (cajas apiladas para aprovechar el espacio vertical), contenedores flexibles (líquidos y sólidos a granel, 500-1000 kg)." },
+  { q: "¿Cuál es el proceso de expedición de mercancías en el almacén?", a: "Orden: Embalaje → Precintado → Etiquetado → Pesado → Paletización → Control de salida → Carga de vehículos → Emisión de documentación (albarán + carta-porte) → Confirmación de salida actualizando el stock en el sistema." },
+  { q: "¿Cuándo y por qué no debe firmar el albarán el encargado de recibir la mercancía?", a: "No debe firmar si hay anomalías: mercancía defectuosa, cantidades incorrectas, embalaje dañado, mercancía no solicitada. En ese caso, el transportista la devuelve y se informa al proveedor exigiendo solución." },
+  { q: "¿Qué es el inventario y cuál es su proceso de cotejo?", a: "Recuento físico de todas las existencias del almacén en un momento determinado. Al menos una vez al año. Proceso: recuento físico → cotejo con el registro informático → si hay diferencias, investigar causa (pérdidas, extravíos, hurtos, deterioro) y documentarlas." },
+  { q: "¿Qué es la ficha de almacén?", a: "Registro individual por cada tipo de mercancía con tres columnas: Entradas (compras), Salidas (ventas/consumos) y Existencias (stock actual). Se actualiza inmediatamente con cada movimiento. Puede ser en papel o en software." },
+  { q: "¿Cuáles son los sistemas de control de calidad en el almacén?", a: "ISO 9001 (estándar más extendido a nivel mundial), modelo EFQM (europeo, basado en excelencia empresarial), control estadístico de procesos (SPC: usa datos estadísticos para detectar desviaciones). Control en recepción, almacenamiento y expedición." },
+  { q: "¿Cuáles son los 4 tipos de etiquetas en el almacén?", a: "1) Etiquetas de contenido (identifican el producto). 2) Etiquetas de manipulación (instrucciones de manejo: frágil, este lado arriba, no apilar). 3) Etiquetas de control (seguimiento interno). 4) Etiquetas de peligro (sustancias peligrosas, temperatura, humedad)." },
+  { q: "¿Qué precio de adquisición se usa para valorar las existencias?", a: "Importe facturado − descuentos + todos los gastos hasta poner el bien en condición de venta (transporte, aranceles de aduana, seguros). No incluye el IVA recuperable. Ejemplo del manual: 1.500 uds. a 30€ − dto 15% + aranceles 1.345€ + transporte 700€ → coste total 40.295€ → 26,86 €/ud." },
+];
+
+let currentCard = 0;
+let isFlipped = false;
+
+function renderCard() {
+  document.getElementById('fc-front-text').textContent = cards[currentCard].q;
+  document.getElementById('fc-back-text').textContent = cards[currentCard].a;
+  document.getElementById('fc-counter').textContent = (currentCard + 1) + ' / ' + cards.length;
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  isFlipped = false;
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+  isFlipped = !isFlipped;
+}
+
+function nextCard() {
+  currentCard = (currentCard + 1) % cards.length;
+  renderCard();
+}
+
+function prevCard() {
+  currentCard = (currentCard - 1 + cards.length) % cards.length;
+  renderCard();
+}
+
+renderCard();
+
+// ---- QUIZ ----
+const questions = [
+  { q: "¿Cuál es la primera fase del proceso de aprovisionamiento?", opts: ["Búsqueda de proveedores", "Análisis de las necesidades de la empresa", "Valoración de ofertas", "Almacenamiento del pedido"], correct: 1, explanation: "Lo primero es saber qué se necesita, cuánto y en qué plazo. Solo después se buscan proveedores para satisfacer esas necesidades." },
+  { q: "Al valorar proveedores, ¿qué criterio recibiría mayor puntuación en el plazo de pago?", opts: ["Pago al contado", "Aplazado a 30 días sin intereses", "Aplazado a 60 días sin intereses", "Pago anticipado"], correct: 2, explanation: "El aplazado a 60 días sin intereses da mayor liquidez a la empresa compradora, por lo que recibe la puntuación más alta." },
+  { q: "¿Cuál de los siguientes documentos NO es obligatorio en las operaciones de compraventa?", opts: ["La factura", "El albarán", "Ambos son obligatorios", "Ninguno es obligatorio"], correct: 1, explanation: "El albarán y la nota de entrega no son documentos de emisión obligatoria. La factura sí es obligatoria según la ley." },
+  { q: "Un albarán valorado se diferencia del albarán sin valorar en que:", opts: ["El valorado no incluye el precio", "El valorado incluye el importe total con descuentos e impuestos", "El sin valorar sí incluye el precio unitario", "No hay diferencia práctica entre ellos"], correct: 1, explanation: "El albarán valorado incluye el importe total del pedido con descuentos, impuestos, etc., además de cantidad y descripción." },
+  { q: "¿Cuál es el importe máximo para emitir una factura simplificada con carácter general?", opts: ["200 € IVA incluido", "400 € IVA incluido", "1.000 € IVA incluido", "3.000 € IVA incluido"], correct: 1, explanation: "Con carácter general, la factura simplificada se puede emitir cuando el importe no supera los 400 € IVA incluido. Los 3.000 € son para colectivos específicos autorizados." },
+  { q: "El IVA es un impuesto:", opts: ["Directo y lo paga el empresario", "Indirecto y lo soporta el consumidor final", "Directo y lo paga la empresa vendedora", "Indirecto y lo paga el Estado"], correct: 1, explanation: "El IVA es un impuesto indirecto que recae sobre el consumo. Los empresarios son meros intermediarios recaudadores — el que realmente lo soporta es el consumidor final." },
+  { q: "¿Qué tipo de IVA se aplica a los libros, periódicos y revistas?", opts: ["21 % (tipo general)", "10 % (tipo reducido)", "4 % (tipo superreducido)", "Están exentos de IVA"], correct: 2, explanation: "Los libros, periódicos y revistas tributan al tipo superreducido del 4%." },
+  { q: "Una empresa tiene en un trimestre: IVA repercutido 5.000 € e IVA soportado 8.000 €. El resultado es:", opts: ["Ingresa 3.000 € a Hacienda", "Hacienda le devuelve o compensa 3.000 €", "No hace nada ese trimestre", "Ingresa 5.000 € a Hacienda"], correct: 1, explanation: "IVA repercutido (5.000) − IVA soportado (8.000) = −3.000 €. Resultado negativo: Hacienda devuelve o compensa 3.000 €." },
+  { q: "¿Qué diferencia existe entre una operación no sujeta y una operación exenta de IVA?", opts: ["Son exactamente lo mismo", "No sujeta: no hay hecho imponible. Exenta: hay hecho imponible pero no se grava", "Exenta: no hay hecho imponible. No sujeta: hay hecho imponible pero no se grava", "Solo se diferencian en el tipo impositivo aplicado"], correct: 1, explanation: "No sujeta = el hecho imponible no existe, están fuera del ámbito del impuesto. Exenta = el hecho imponible existe pero la ley exime de pagar el impuesto." },
+  { q: "El Código de Comercio español vigente entró en vigor el:", opts: ["1 de enero de 1829", "1 de enero de 1886", "22 de agosto de 1885", "1 de enero de 1990"], correct: 1, explanation: "El Código de Comercio fue aprobado el 22 de agosto de 1885 y entró en vigor el 1 de enero de 1886. Tiene 955 artículos." },
+  { q: "¿Cuál de las siguientes normas de la UE es directamente aplicable sin necesidad de adaptación nacional?", opts: ["La Directiva", "La Recomendación", "El Reglamento", "El Dictamen"], correct: 2, explanation: "El Reglamento comunitario es obligatorio y directamente aplicable en todos los estados miembro, sin necesidad de transposición al derecho nacional." },
+  { q: "Los métodos de valoración de existencias admitidos por el Plan General de Contabilidad son:", opts: ["FIFO y LIFO", "PMP y LIFO", "PMP y FIFO", "FIFO, PMP y LIFO"], correct: 2, explanation: "El PGC vigente (RD 1514/2007 y RD 1515/2007) solo admite PMP y FIFO. El método LIFO fue eliminado." },
+  { q: "En el método FIFO, ¿cómo salen las existencias del almacén?", opts: ["Las últimas que entraron salen primero", "Las más baratas salen primero", "Las primeras que entraron salen primero, a su precio original", "Se calcula un precio medio para las salidas"], correct: 2, explanation: "FIFO = First In, First Out. Los artículos salen en el mismo orden en que entraron, valorados a su precio de entrada original. Las existencias finales quedan valoradas a precios más recientes." },
+  { q: "En el método PMP, tras comprar 30 unidades a 70 € habiendo existencias de 20 unidades a 75 €, el nuevo PMP es:", opts: ["70 €", "72 €", "72,50 €", "75 €"], correct: 1, explanation: "(20×75 + 30×70) / (20+30) = (1.500 + 2.100) / 50 = 3.600 / 50 = 72 €/unidad." },
+  { q: "¿Qué es el Período Medio de Maduración (PMM)?", opts: ["El tiempo entre dos pedidos consecutivos", "El tiempo desde la inversión en materias primas hasta el cobro al cliente", "La vida útil media de los productos en almacén", "El plazo de pago a los proveedores"], correct: 1, explanation: "El PMM es el tiempo que tarda la empresa en recuperar el dinero invertido en el proceso productivo/comercial, desde la compra de materias primas hasta el cobro de las ventas. Cuanto menor, mejor." },
+  { q: "¿Qué documento debe firmar el receptor de la mercancía para dar fe de su llegada en buenas condiciones?", opts: ["La factura", "La carta-porte", "Una copia del albarán", "El pedido original"], correct: 2, explanation: "El receptor firma una copia del albarán, acreditando que recibió la totalidad de la mercancía en perfectas condiciones. Esa copia firmada se devuelve a la empresa vendedora." },
+  { q: "El Real Decreto 1619/2012 regula:", opts: ["El Plan General de Contabilidad", "Las obligaciones de facturación", "La protección de datos personales", "El IVA intracomunitario"], correct: 1, explanation: "El RD 1619/2012, de 30 de noviembre, es el reglamento que regula las obligaciones de facturación en España." },
+  { q: "¿Qué diferencia al cheque del pagaré?", opts: ["El cheque es para pagos futuros; el pagaré es a la vista", "El pagaré es para pagos futuros; el cheque es pagadero a la vista", "Son equivalentes, solo difieren en el formato", "El pagaré no puede usarse en transacciones empresariales"], correct: 1, explanation: "El cheque es pagadero a la vista (al presentarlo). El pagaré es una promesa de pago para una fecha futura determinada. Además, el pagaré es siempre nominativo; el cheque puede ser al portador." },
+  { q: "¿Cuáles son las etiquetas que informan sobre cómo manipular los productos del almacén?", opts: ["Etiquetas de contenido", "Etiquetas de control", "Etiquetas de manipulación", "Etiquetas de peligro"], correct: 2, explanation: "Las etiquetas de manipulación contienen instrucciones específicas sobre cómo manejar los productos (frágil, no apilar, este lado arriba, mantener frío, etc.)." },
+  { q: "¿Qué ocurre en las exenciones plenas del IVA?", opts: ["No se repercute IVA y tampoco se puede deducir el IVA soportado", "No se repercute IVA pero sí se puede deducir el IVA soportado", "Se repercute IVA al 0 % y no se puede deducir nada", "Se aplica el tipo superreducido del 4 %"], correct: 1, explanation: "En las exenciones plenas (exportaciones, entregas intracomunitarias, envíos a Ceuta/Melilla/Canarias): no se repercute IVA al cliente pero el empresario SÍ puede deducir el IVA soportado." },
+  { q: "¿Qué es el recargo de equivalencia y a quién se aplica?", opts: ["Un descuento para minoristas", "Un régimen especial de IVA obligatorio para comerciantes minoristas personas físicas", "Un impuesto adicional a los importadores", "Una multa por no liquidar el IVA a tiempo"], correct: 1, explanation: "Es un régimen especial de IVA obligatorio para comerciantes minoristas personas físicas. Sus proveedores les repercuten IVA + recargo (5,2% al tipo general, 1,4% al reducido, 0,5% al superreducido) y ellos no tienen que liquidar IVA a Hacienda." },
+  { q: "¿Cuántos años deben conservarse los libros y documentos mercantiles según el Código de Comercio?", opts: ["3 años", "4 años", "6 años", "10 años"], correct: 2, explanation: "El artículo 30 del Código de Comercio establece la obligatoriedad de conservar libros, correspondencia, documentación y justificantes durante 6 años." },
+  { q: "¿Qué es el cotejo de documentos?", opts: ["La firma del albarán por el receptor de la mercancía", "La verificación cruzada de documentos para detectar errores entre ellos", "El archivo cronológico de las facturas emitidas", "El proceso de liquidación del IVA trimestral"], correct: 1, explanation: "El cotejo es la verificación cruzada de documentos: por ejemplo, cuando llega la factura, se localiza el albarán correspondiente y se comprueba que los datos coinciden. Es un instrumento de control." },
+  { q: "¿Cuál es la fórmula para calcular la K de proporcionalidad?", opts: ["K = Importe bruto / Precio de coste", "K = Precio de coste / Importe bruto", "K = Base imponible / IVA repercutido", "K = Descuento / Importe bruto"], correct: 1, explanation: "K = Precio de coste / Importe bruto. Se usa cuando en la misma factura hay diferentes tipos de IVA junto con descuentos o gastos. Multiplicas K por el precio unitario de cada artículo para repartir proporcionalamente los gastos/descuentos." },
+  { q: "¿Qué es el RGPD y qué establece?", opts: ["Real Decreto General de Presupuestos", "Reglamento UE 2016/679 de protección de datos personales", "Registro General de Proveedores y Distribuidores", "Reglamento de Gestión y Regulación del IVA"], correct: 1, explanation: "El RGPD (Reglamento UE 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016) regula el tratamiento de datos personales en la UE. En España se complementa con la LOPDGDD (LO 3/2018)." },
+  { q: "¿Qué son las entregas intracomunitarias de bienes?", opts: ["Ventas entre empresas de la misma comunidad autónoma", "Entregas de bienes desde España a otro estado miembro de la UE, exentas en origen y gravadas en destino", "Importaciones de países fuera de la UE", "Ventas al consumidor final dentro del territorio español"], correct: 1, explanation: "Las entregas intracomunitarias son bienes expedidos desde España (Península o Baleares) a otro estado miembro de la UE. Están exentas de IVA en el estado de origen y tributan en el estado de destino." },
+  { q: "¿Cuál es el proceso correcto de expedición de mercancías en el almacén?", opts: ["Embalaje → Carga → Etiquetado → Documentación", "Embalaje → Precintado → Etiquetado → Pesado → Paletización → Control salida → Carga → Documentación → Confirmar stock", "Paletización → Embalaje → Carga → Documentación", "Documentación → Embalaje → Carga → Actualizar stock"], correct: 1, explanation: "El proceso completo es: Embalaje → Precintado → Etiquetado → Pesado → Paletización → Control de salida → Carga de vehículos → Emisión de documentación (albarán + carta-porte) → Confirmación de salida actualizando el stock." },
+  { q: "¿Qué tipo de IVA tributan los servicios de hostelería (restaurantes, hoteles)?", opts: ["4% tipo superreducido", "10% tipo reducido", "21% tipo general", "Están exentos de IVA"], correct: 1, explanation: "Los servicios de hostelería (hoteles, restaurantes, etc.) tributan al tipo reducido del 10%." },
+  { q: "Según el Código de Comercio, ¿cuándo tiene carácter mercantil una compraventa?", opts: ["Cuando el objeto del contrato supera 3.000 €", "Cuando se compran cosas muebles para revenderlas con ánimo de lucrarse en la reventa", "Cuando intervienen dos empresas como partes del contrato", "Cuando se formaliza por escrito ante notario"], correct: 1, explanation: "Art. 325 del Código de Comercio: será mercantil la compraventa de cosas muebles para revenderlas con ánimo de lucrarse en la reventa. La clave es el ánimo de lucro en la reventa." },
+  { q: "¿Qué es la rotación de existencias?", opts: ["El número de veces que se hace inventario al año", "Número de veces que las existencias salen del almacén y son repuestas en un período", "La diferencia entre el stock máximo y mínimo", "El tiempo que tarda un producto en venderse"], correct: 1, explanation: "R = Coste anual de ventas / Promedio de existencias. A mayor rotación, más eficiente la gestión del almacén. Rotación baja = dinero parado. Demasiado alta = riesgo de desabastecimiento." },
+];
+
+let quizAnswered = 0;
+let quizScore = 0;
+
+function buildQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  quizAnswered = 0;
+  quizScore = 0;
+  document.getElementById('quiz-score').classList.remove('show');
+  questions.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `
+      <div class="quiz-q-text">${qi + 1}. ${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((o, oi) => `<button class="quiz-opt" data-qi="${qi}" data-oi="${oi}" onclick="answerQ(this,${qi},${oi})">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-feedback" id="fb-${qi}">${q.explanation}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function answerQ(btn, qi, oi) {
+  const opts = btn.closest('.quiz-options').querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.disabled = true);
+  if (oi === questions[qi].correct) {
+    btn.classList.add('correct');
+    quizScore++;
+  } else {
+    btn.classList.add('wrong');
+    opts[questions[qi].correct].classList.add('correct');
+  }
+  document.getElementById('fb-' + qi).classList.add('show');
+  quizAnswered++;
+  if (quizAnswered === questions.length) {
+    document.getElementById('score-num').textContent = quizScore + '/' + questions.length;
+    document.getElementById('quiz-score').classList.add('show');
+  }
+}
+
+function resetQuiz() { buildQuiz(); }
+
+buildQuiz();
+
+// ---- MATCH GAME ----
+const matchPairs = [
+  { term: "PMP", def: "Método de valoración que calcula un precio medio ponderado en cada nueva entrada de mercancía" },
+  { term: "FIFO", def: "Primera entrada, primera salida — artículos salen con su precio original por lotes del más antiguo al más reciente" },
+  { term: "IVA repercutido", def: "IVA que el empresario cobra a sus clientes al emitir facturas de venta" },
+  { term: "IVA soportado", def: "IVA que el empresario paga a sus proveedores en las facturas de compra" },
+  { term: "Albarán valorado", def: "Documento que incluye cantidad, descripción E importe total del envío con descuentos e impuestos" },
+  { term: "Factura simplificada", def: "Factura para consumidor final con importe hasta 400 € IVA incluido (RD 1619/2012)" },
+  { term: "Operación no sujeta al IVA", def: "No existe hecho imponible — directamente fuera del ámbito del impuesto (ej: entrega de dinero, muestras gratuitas)" },
+  { term: "Operación exenta de IVA", def: "Hay hecho imponible pero la ley exime de pagar el impuesto (ej: educación, sanidad, seguros)" },
+  { term: "Carta-porte", def: "Documento que refleja el servicio de transporte realizado por empresa transportista ajena al vendedor" },
+  { term: "CRM", def: "Sistema tecnológico para fortalecer la relación empresa-cliente y lograr su fidelización" },
+  { term: "Período Medio de Maduración", def: "Tiempo desde la inversión en materias primas hasta el cobro al cliente" },
+  { term: "Tipo superreducido 4%", def: "IVA aplicable a alimentos básicos (pan, leche, huevos), medicamentos humanos y libros/periódicos" },
+  { term: "Exención plena de IVA", def: "No se repercute IVA pero SÍ se puede deducir el soportado — aplica a exportaciones y entregas intracomunitarias" },
+  { term: "Exención limitada de IVA", def: "No se repercute IVA y TAMPOCO se puede deducir el soportado — aplica a sanidad, educación, seguros" },
+  { term: "Recargo de equivalencia", def: "Régimen especial de IVA obligatorio para comerciantes minoristas personas físicas — no liquidan IVA a Hacienda" },
+  { term: "Reglamento UE", def: "Norma europea obligatoria y directamente aplicable sin necesidad de adaptación nacional" },
+  { term: "Directiva UE", def: "Norma europea que obliga en el resultado pero deja a cada estado libertad para elegir la forma de transposición" },
+  { term: "Cotejo de documentos", def: "Verificación cruzada entre documentos (ej: factura vs albarán) para detectar errores y fraudes" },
+  { term: "Factura rectificativa", def: "Documento que modifica una factura original cuando hay errores, devoluciones o variaciones de precio" },
+  { term: "Portes pagados", def: "Los gastos de transporte son sufragados por la empresa vendedora" },
+  { term: "Portes debidos", def: "Los gastos de transporte son sufragados por la empresa compradora" },
+  { term: "K de proporcionalidad", def: "Fórmula para repartir descuentos entre bases imponibles con distintos tipos de IVA: K = Precio de coste / Importe bruto" },
+  { term: "Rotación de existencias", def: "Número de veces que las existencias se renuevan en un período: R = Coste anual de ventas / Promedio de existencias" },
+  { term: "Impuesto directo", def: "Grava directamente la renta o el patrimonio del sujeto (IRPF, Impuesto de Sociedades)" },
+  { term: "Impuesto indirecto", def: "Grava el consumo de bienes y servicios (IVA, Transmisiones Patrimoniales, Impuestos Especiales)" },
+];
+
+let selectedMatch = null;
+let matchedCount = 0;
+
+function newMatchRound() {
+  const shuffled = [...matchPairs].sort(() => Math.random() - 0.5).slice(0, 5);
+  const terms = shuffled.map(p => ({ text: p.term, type: 'term', pair: p.term }));
+  const defs = shuffled.map(p => ({ text: p.def, type: 'def', pair: p.term }));
+  const all = [...terms, ...defs].sort(() => Math.random() - 0.5);
+  const grid = document.getElementById('match-grid');
+  grid.innerHTML = '';
+  document.getElementById('match-result').textContent = '';
+  matchedCount = 0;
+  selectedMatch = null;
+  all.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'match-card';
+    card.textContent = item.text;
+    card.dataset.pair = item.pair;
+    card.dataset.type = item.type;
+    card.dataset.idx = i;
+    card.onclick = function() { handleMatch(this, shuffled.length); };
+    grid.appendChild(card);
+  });
+}
+
+function handleMatch(card, total) {
+  if (card.classList.contains('matched')) return;
+  if (!selectedMatch) {
+    card.classList.add('selected');
+    selectedMatch = card;
+  } else {
+    if (selectedMatch === card) { card.classList.remove('selected'); selectedMatch = null; return; }
+    if (selectedMatch.dataset.pair === card.dataset.pair && selectedMatch.dataset.type !== card.dataset.type) {
+      selectedMatch.classList.remove('selected');
+      selectedMatch.classList.add('matched');
+      card.classList.add('matched');
+      matchedCount++;
+      selectedMatch = null;
+      if (matchedCount === total) {
+        document.getElementById('match-result').textContent = '🎉 ¡Todos correctos! Pulsa Nueva ronda para seguir practicando.';
+      }
+    } else {
+      selectedMatch.classList.remove('selected');
+      card.classList.add('wrong-flash');
+      selectedMatch.classList.add('wrong-flash');
+      const s = selectedMatch, c = card;
+      setTimeout(() => { s.classList.remove('wrong-flash'); c.classList.remove('wrong-flash'); }, 600);
+      selectedMatch = null;
+    }
+  }
+}
+
+newMatchRound();
+</script>
+</body>
+</html>
